@@ -16,6 +16,10 @@ angular.module('marketplace_services', [])
         return {
             get_gamearts_products:function () {
                 return $resource(gamearts_url + 'getGameartsProducts.php');
+            },
+
+            get_gamearts_products_by_ID:function(id){ //获得App的热门搜索词
+                return $resource(gamearts_url + 'getGameartsProducts.php?id=' + id.toString());//query
             }
         };
     });

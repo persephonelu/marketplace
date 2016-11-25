@@ -18,7 +18,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'marketplace_services'
+    'marketplace_services',
+    'directives'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -30,6 +31,11 @@ angular
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
+      })
+
+      .when('/contact', {
+          templateUrl: 'views/contact-us.html',
+          controller: 'ContactCtrl'
       })
       .otherwise({
         redirectTo: '/'
