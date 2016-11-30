@@ -1267,7 +1267,7 @@ h2.title {
   color: #3A5C83;
   float: left;
   font-family: 'Roboto', sans-serif;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 700;
   margin-right: 20px;
   margin-top: 0px;
@@ -2153,6 +2153,7 @@ h2.title {
   background: #3A5C83;
   color: #fff
 }
+
 
 .rating-area {
   border: 1px solid #F7F7F0;

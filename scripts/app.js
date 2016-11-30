@@ -37,6 +37,16 @@ angular
           templateUrl: 'views/contact-us.html',
           controller: 'ContactCtrl'
       })
+
+      .when('/product', {
+          templateUrl: 'views/product-details.html',
+          controller: 'ProductCtrl'
+      })
+
+      .when('/cart', {
+          templateUrl: 'views/cart.html',
+          controller: 'CartCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

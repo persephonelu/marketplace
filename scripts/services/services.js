@@ -18,8 +18,23 @@ angular.module('marketplace_services', [])
                 return $resource(gamearts_url + 'getGameartsProducts.php');
             },
 
-            get_gamearts_products_by_ID:function(id){ //获得App的热门搜索词
+            get_gamearts_products_by_ID:function(id){
                 return $resource(gamearts_url + 'getGameartsProducts.php?id=' + id.toString());//query
+            }
+        };
+    })
+    .factory('currProduct', function() {
+        var currProduct = {};
+        return currProduct;
+    })
+    .factory('cart', function () {
+        var cart = [];
+        return {
+            addToCart:function(product) {
+                cart.push(product);
+            },
+            getCart: function() {
+                return cart;
             }
         };
     });

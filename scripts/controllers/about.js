@@ -10,9 +10,5 @@
 angular.module('sampleApp')
   .controller('AboutCtrl', function ($scope) {
     $scope.testName = 'Fang Lu';
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    $scope.test = 'test';
   });
