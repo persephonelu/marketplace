@@ -42,4 +42,28 @@ angular.module('sampleApp')
 
   .controller('CartCtrl', function ($scope, cart) {
       $scope.productCart = cart.getCart();
+  })
+
+  .controller('LoginCtrl', function ($scope, md5) {
+      $scope.checkbox = true;
+
+      $scope.login = function () {
+          if ($scope.username == undefined)
+          {
+              alert('Username can not be null');
+              return;
+          }
+
+          if ($scope.password == undefined)
+          {
+              alert('Password can not be null');
+              return;
+          }
+          $scope.encryptionMsg = md5.createHash($scope.password);
+          console.log('encryption password is ' + $scope.encryptionMsg);
+      };
+
+      $scope.registerNewUser = function () {
+
+      };
   });

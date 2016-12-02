@@ -19,7 +19,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'marketplace_services',
-    'directives'
+    'directives',
+    'angular-md5'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -46,6 +47,11 @@ angular
       .when('/cart', {
           templateUrl: 'views/cart.html',
           controller: 'CartCtrl'
+      })
+
+      .when('/login', {
+          templateUrl: 'views/login.html',
+          controller: 'LoginCtrl'
       })
       .otherwise({
         redirectTo: '/'
