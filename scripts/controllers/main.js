@@ -9,11 +9,13 @@
  */
 angular.module('sampleApp')
   .controller('MainCtrl', function ($scope, $http, $location, gamearts, currProduct) {
-      $scope.testName='Fang Lu';
+      $scope.category=1;
       $scope.products = gamearts.get_gamearts_products().query();
       $scope.Top5Games = gamearts.get_gamearts_top5_products().query();
 
+
       $scope.get_gamearts_products = function() {
+          $scope.category = 1;
           $scope.products = gamearts.get_gamearts_products().query();
       };
 
@@ -25,6 +27,10 @@ angular.module('sampleApp')
 
       $scope.showProductDetail = function (productId) {
           currProduct.currProduct = $scope.products[productId - 1];
+          if ($scope.category === 1)
+          {
+              gamearts.update_gamearts_product_clickcount(productId).query();
+          }
           //alert(currProduct.currProduct.productName);
           $location.path("/product");
       };
@@ -49,13 +55,13 @@ angular.module('sampleApp')
       $scope.checkbox = true;
 
       $scope.login = function () {
-          if ($scope.username == undefined)
+          if ($scope.username === undefined)
           {
               alert('Username can not be null');
               return;
           }
 
-          if ($scope.password == undefined)
+          if ($scope.password === undefined)
           {
               alert('Password can not be null');
               return;
@@ -65,13 +71,13 @@ angular.module('sampleApp')
       };
 
       $scope.registerNewUser = function () {
-          if ($scope.newusername == undefined)
+          if ($scope.newusername === undefined)
           {
               alert('Username can not be null');
               return;
           }
 
-          if ($scope.newpassword == undefined)
+          if ($scope.newpassword === undefined)
           {
               alert('Password can not be null');
               return;

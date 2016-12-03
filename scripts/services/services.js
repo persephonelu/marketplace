@@ -24,6 +24,11 @@ angular.module('marketplace_services', [])
 
             get_gamearts_top5_products:function() {
                 return $resource(gamearts_url + 'getGameartsTop5Products.php');
+            },
+
+            update_gamearts_product_clickcount:function(id) {
+                //console.log(gamearts_url + 'updateProductClickcount.php?id=' + id.toString());
+                return $resource(gamearts_url + 'updateProductClickcount.php?id=' + id.toString());
             }
         };
     })
