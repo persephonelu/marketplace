@@ -11,6 +11,7 @@ angular.module('sampleApp')
   .controller('MainCtrl', function ($scope, $http, $location, gamearts, currProduct) {
       $scope.testName='Fang Lu';
       $scope.products = gamearts.get_gamearts_products().query();
+      $scope.Top5Games = gamearts.get_gamearts_top5_products().query();
 
       $scope.get_gamearts_products = function() {
           $scope.products = gamearts.get_gamearts_products().query();
@@ -64,6 +65,18 @@ angular.module('sampleApp')
       };
 
       $scope.registerNewUser = function () {
+          if ($scope.newusername == undefined)
+          {
+              alert('Username can not be null');
+              return;
+          }
 
+          if ($scope.newpassword == undefined)
+          {
+              alert('Password can not be null');
+              return;
+          }
+          $scope.encryptionMsg = md5.createHash($scope.newpassword);
+          console.log('encryption password is ' + $scope.encryptionMsg);
       };
   });

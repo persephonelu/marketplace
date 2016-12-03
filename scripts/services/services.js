@@ -20,6 +20,10 @@ angular.module('marketplace_services', [])
 
             get_gamearts_products_by_ID:function(id){
                 return $resource(gamearts_url + 'getGameartsProducts.php?id=' + id.toString());//query
+            },
+
+            get_gamearts_top5_products:function() {
+                return $resource(gamearts_url + 'getGameartsTop5Products.php');
             }
         };
     })
