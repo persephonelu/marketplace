@@ -13,7 +13,6 @@ angular.module('sampleApp')
       $scope.products = gamearts.get_gamearts_products().query();
       $scope.Top5Games = gamearts.get_gamearts_top5_products().query();
 
-
       $scope.get_gamearts_products = function() {
           $scope.category = 1;
           $scope.products = gamearts.get_gamearts_products().query();
