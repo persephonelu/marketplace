@@ -77,17 +77,17 @@
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 class="panel-title"><a href="" ng-click="get_gamearts_products_by_id()">Pets</a></h4>
+                                <h4 class="panel-title"><a href="" ng-model="category" ng-click="get_ourpets_products()">Pets</a></h4>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 class="panel-title"><a href="#">Jobs</a></h4>
+                                <h4 class="panel-title"><a href="" ng-model="category" ng-click="get_codejob_products()">Jobs</a></h4>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 class="panel-title"><a href="#">Kids</a></h4>
+                                <h4 class="panel-title"><a href="" ng-model="category" ng-click="get_iph_products()">Musics</a></h4>
                             </div>
                         </div>
                     </div><!--/category-products-->
@@ -122,7 +122,7 @@
                 <div class="category-tab"><!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a show-tab href="#tshirt" data-toggle="tab">T-Shirt</a></li>
+                            <li class="active"><a show-tab href="#game" data-toggle="tab">Games</a></li>
                             <li><a show-tab href="#blazers" data-toggle="tab">Blazers</a></li>
                             <li><a show-tab href="#sunglass" data-toggle="tab">Sunglass</a></li>
                             <li><a show-tab href="#kids" data-toggle="tab">Kids</a></li>
@@ -130,7 +130,7 @@
                         </ul>
                     </div>
                     <div class="tab-content">
-                        <div class="tab-pane fade active in" id="tshirt" >
+                        <div class="tab-pane fade active in" id="game" >
                             <div ng-repeat="game in Top5Games">
                                 <div class="col-sm-3">
                                     <div class="product-image-wrapper">
