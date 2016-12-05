@@ -25,23 +25,10 @@ angular.module('sampleApp')
           $scope.products = gamearts.get_gamearts_products_by_ID(id).query();
       };
 
-
-      //add codejob
-      $scope.Top5Jobs= codejob.get_codejob_top5_products().query();
-      $scope.get_codejob_products = function() {
-          $scope.products = codejob.get_codejob_products().query();
-      };
-
-      $scope.get_codejob_products_by_id = function() {
-          $scope.products = {};
-          var id = 1;
-          $scope.products = codejob.get_codejob_products_by_ID(id).query();
-      };
-      //end of codejob
-
       //start pets
       $scope.Top5Pets= ourpets.get_ourpets_top5_products().query();
       $scope.get_ourpets_products = function() {
+          $scope.category = 2;
           $scope.products =ourpets.get_ourpets_products().query();
       };
 
@@ -53,9 +40,26 @@ angular.module('sampleApp')
       //end pets
 
 
+      //add codejob
+      $scope.Top5Jobs= codejob.get_codejob_top5_products().query();
+      $scope.get_codejob_products = function() {
+          $scope.category = 3;
+          $scope.products = codejob.get_codejob_products().query();
+      };
+
+      $scope.get_codejob_products_by_id = function() {
+          $scope.products = {};
+          var id = 1;
+          $scope.products = codejob.get_codejob_products_by_ID(id).query();
+      };
+      //end of codejob
+
+
+
       //start iph
       $scope.Top5Iph= iph.get_iph_top5_products().query();
       $scope.get_iph_products = function() {
+          $scope.category = 4;
           $scope.products =iph.get_iph_products().query();
       };
 
@@ -66,11 +70,24 @@ angular.module('sampleApp')
       };
       //end iph
 
+
       $scope.showProductDetail = function (productId) {
           currProduct.currProduct = $scope.products[productId - 1];
           if ($scope.category === 1)
           {
               gamearts.update_gamearts_product_clickcount(productId).query();
+          }
+          else if ($scope.category === 2)
+          {
+              ourpets.update_ourpets_product_clickcount(productId).query();
+          }
+          else if ($scope.category === 3)
+          {
+              codejob.update_codejob_product_clickcount(productId).query();
+          }
+          else if ($scope.category === 4)
+          {
+              iph.update_iph_product_clickcount(productId).query();
           }
           //alert(currProduct.currProduct.productName);
           $location.path("/product");

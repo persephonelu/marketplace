@@ -1096,6 +1096,11 @@ h2.title {
 	background:none;
 }
 
+@media (min-width: 768px) {
+    .tab-content .product{
+        width: 20%;
+    }
+}
 /*************************
 *******Shop CSS******
 **************************/
