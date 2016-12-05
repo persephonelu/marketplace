@@ -117,9 +117,10 @@
                         </div>
                     </div>
                 </div><!--features_items-->
+            </div>
+        </div>
 
-
-                <div class="category-tab"><!--category-tab-->
+        <div class="category-tab"><!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
                             <li class="active"><a show-tab href="#game" data-toggle="tab">Games</a></li>
@@ -131,11 +132,11 @@
                     <div class="tab-content">
                         <div class="tab-pane fade active in" id="game" >
                             <div ng-repeat="game in Top5Games">
-                                <div class="col-sm-3">
+                                <div class="col-sm-3 product" >
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img ng-src="{{game.productImg}}" alt="" />
+                                                <img ng-src="{{game.productImg}}" ng-click="showProductDetail(game.id)" alt="" />
                                                 <h2>${{game.price}}</h2>
                                                 <p>{{game.productName}}</p>
                                             </div>
@@ -147,12 +148,12 @@
 
                         <div class="tab-pane fade" id="pets">
                             <div ng-repeat="pets in Top5Pets">
-                                <div class="col-sm-3">
+                                <div class="col-sm-3 product">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img ng-src="{{pets.productImg}}" alt="" />
-                                                <h2>{{pets.price}}</h2>
+                                                <img ng-src="{{pets.productImg}}" ng-click="showProductDetail(pets.id)" alt="" />
+                                                <h2>${{pets.price}}</h2>
                                                 <p>{{pets.productName}}</p>
                                             </div>
                                         </div>
@@ -163,12 +164,12 @@
 
                         <div class="tab-pane fade" id="jobs">
                             <div ng-repeat="jobs in Top5Jobs">
-                                <div class="col-sm-3">
+                                <div class="col-sm-3 product">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img ng-src="{{jobs.productImg}}" alt="" />
-                                                <h2>{{jobs.price}}</h2>
+                                                <img ng-src="{{jobs.productImg}}" ng-click="showProductDetail(jobs.id)" alt="" />
+                                                <h2>${{jobs.price}}</h2>
                                                 <p>{{jobs.productName}}</p>
                                             </div>
                                         </div>
@@ -179,12 +180,12 @@
 
                         <div class="tab-pane fade" id="music">
                             <div ng-repeat="iph in Top5Iph">
-                                <div class="col-sm-3">
+                                <div class="col-sm-3 product">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img ng-src="{{iph.productImg}}" alt="" />
-                                                <h2>{{iph.price}}</h2>
+                                                <img ng-src="{{iph.productImg}}" ng-click="showProductDetail(iph.id)" alt="" />
+                                                <h2>${{iph.price}}</h2>
                                                 <p>{{iph.productName}}</p>
                                             </div>
                                         </div>
@@ -195,7 +196,7 @@
                     </div>
                 </div><!--/category-tab-->
 
-                <div class="recommended_items"><!--recommended_items-->
+        <div class="recommended_items"><!--recommended_items-->
                     <h2 class="title text-center">recommended items</h2>
 
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
@@ -292,8 +293,6 @@
                     </div>
                 </div><!--/recommended_items-->
 
-            </div>
-        </div>
     </div>
     <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">

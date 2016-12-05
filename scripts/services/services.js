@@ -48,8 +48,8 @@ angular.module('marketplace_services', [])
             get_codejob_top5_products:function() {
                 return $resource(codejob_url + 'getCodeJobTopProducts.php');
             },
-            get_codejob_products_by_Clickcout:function(id) {
-                return $resource(codejob_url + 'productRestful.php?id=' + id.toString());//query
+            update_codejob_product_clickcount:function(id) {
+                return $resource(codejob_url + 'updateProductClickcount.php?id=' + id.toString());//query
             }
         };
     })
@@ -66,8 +66,8 @@ angular.module('marketplace_services', [])
             get_ourpets_top5_products:function() {
                 return $resource(ourpets_url + 'petsTop5products.php');
             },
-            get_ourpets_products_by_Clickcout:function(id) {
-                return $resource(ourpets_url + 'productRestful.php?id=' + id.toString());//query
+            update_ourpets_product_clickcount:function(id) {
+                return $resource(ourpets_url + 'updateProductClickcount.php?id=' + id.toString());//query
             }
         };
     })
@@ -84,8 +84,8 @@ angular.module('marketplace_services', [])
             get_iph_top5_products:function() {
                 return $resource(iph_url + "iphTop5product.php");
             },
-            get_iph_product_by_Clickcout:function(id) {
-                return $resource(iph_url + 'productRestful.php?id=' + id.toString());
+            update_iph_product_clickcount:function(id) {
+                return $resource(iph_url + 'updateProductClickcount.php?id=' + id.toString());
             }
         };
     })
