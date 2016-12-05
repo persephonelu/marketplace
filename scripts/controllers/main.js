@@ -8,10 +8,11 @@
  * Controller of the sampleApp
  */
 angular.module('sampleApp')
-  .controller('MainCtrl', function ($scope, $http, $location, gamearts, currProduct) {
+  .controller('MainCtrl', function ($scope, $http, $location, gamearts, currProduct, codejob, ourpets, iph) {
       $scope.category=1;
       $scope.products = gamearts.get_gamearts_products().query();
       $scope.Top5Games = gamearts.get_gamearts_top5_products().query();
+
 
       $scope.get_gamearts_products = function() {
           $scope.category = 1;
@@ -23,6 +24,47 @@ angular.module('sampleApp')
           var id = 1;
           $scope.products = gamearts.get_gamearts_products_by_ID(id).query();
       };
+
+
+      //add codejob
+      $scope.Top5Jobs= codejob.get_codejob_top5_products().query();
+      $scope.get_codejob_products = function() {
+          $scope.products = codejob.get_codejob_products().query();
+      };
+
+      $scope.get_codejob_products_by_id = function() {
+          $scope.products = {};
+          var id = 1;
+          $scope.products = codejob.get_codejob_products_by_ID(id).query();
+      };
+      //end of codejob
+
+      //start pets
+      $scope.Top5Pets= ourpets.get_ourpets_top5_products().query();
+      $scope.get_ourpets_products = function() {
+          $scope.products =ourpets.get_ourpets_products().query();
+      };
+
+      $scope.get_ourpets_products_by_id = function() {
+          $scope.products = {};
+          var id = 1;
+          $scope.products = ourpets.get_ourpets_products_by_ID(id).query();
+      };
+      //end pets
+
+
+      //start iph
+      $scope.Top5Iph= iph.get_iph_top5_products().query();
+      $scope.get_iph_products = function() {
+          $scope.products =iph.get_iph_products().query();
+      };
+
+      $scope.get_iph_products_by_id = function() {
+          $scope.products = {};
+          var id = 1;
+          $scope.products = iph.get_iph_products_by_ID(id).query();
+      };
+      //end iph
 
       $scope.showProductDetail = function (productId) {
           currProduct.currProduct = $scope.products[productId - 1];
