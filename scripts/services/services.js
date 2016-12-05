@@ -10,11 +10,9 @@
 
 var gamearts_url='http://www.gamearts.me/';
 var codejob_url='http://www.codejob.tech/';
-<<<<<<< HEAD
-=======
 var ourpets_url='http://ourpets.qianwenxie.com/';
 var iph_url='http://yaoxingliu.com/';
->>>>>>> 7f475bc5cd7eaa9b0d5b59f9c87693299f10f6c1
+
 
 angular.module('marketplace_services', [])
 
