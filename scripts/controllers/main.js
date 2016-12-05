@@ -50,7 +50,7 @@ angular.module('sampleApp')
       $scope.productCart = cart.getCart();
   })
 
-  .controller('LoginCtrl', function ($scope, md5) {
+  .controller('LoginCtrl', function ($scope, md5, userAuth) {
       $scope.checkbox = true;
 
       $scope.login = function () {
@@ -69,19 +69,18 @@ angular.module('sampleApp')
           console.log('encryption password is ' + $scope.encryptionMsg);
       };
 
-      $scope.registerNewUser = function () {
-          if ($scope.newusername === undefined)
-          {
+      $scope.registerNewUser = function () { //user sign-up
+          if ($scope.newusername === undefined) {
               alert('Username can not be null');
               return;
           }
 
-          if ($scope.newpassword === undefined)
-          {
+          if ($scope.newpassword === undefined) {
               alert('Password can not be null');
               return;
           }
           $scope.encryptionMsg = md5.createHash($scope.newpassword);
+          userAuth.registerNewUser($scope.newusername, $scope.encryptionMsg).query();
           console.log('encryption password is ' + $scope.encryptionMsg);
       };
   });

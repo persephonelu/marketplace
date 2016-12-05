@@ -9,6 +9,7 @@
  7  */
 
 var gamearts_url='http://www.gamearts.me/';
+var codejob_url='http://www.codejob.tech/';
 
 angular.module('marketplace_services', [])
 
@@ -36,6 +37,7 @@ angular.module('marketplace_services', [])
         var currProduct = {};
         return currProduct;
     })
+
     .factory('cart', function () {
         var cart = [];
         return {
@@ -46,4 +48,15 @@ angular.module('marketplace_services', [])
                 return cart;
             }
         };
+    })
+
+
+    .factory('userAuth', function($resource) {
+        return {
+            registerNewUser: function (newusername, newpassword) { //user sign-up
+                return $resource(codejob_url + 'registerNewUser.php?usr=' +
+                    newusername.toString() + '&&pw=' + newpassword.toString());//query
+            }
+        };
     });
+
