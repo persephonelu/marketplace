@@ -13,6 +13,7 @@ angular.module('sampleApp')
       $scope.products = gamearts.get_gamearts_products().query();
       $scope.Top5Games = gamearts.get_gamearts_top5_products().query();
 
+
       $scope.get_gamearts_products = function() {
           $scope.category = 1;
           $scope.products = gamearts.get_gamearts_products().query();
@@ -26,6 +27,7 @@ angular.module('sampleApp')
 
 
       //add codejob
+      $scope.Top5Jobs= codejob.get_codejob_top5_products().query();
       $scope.get_codejob_products = function() {
           $scope.products = codejob.get_codejob_products().query();
       };
@@ -38,6 +40,7 @@ angular.module('sampleApp')
       //end of codejob
 
       //start pets
+      $scope.Top5Pets= ourpets.get_ourpets_top5_products().query();
       $scope.get_ourpets_products = function() {
           $scope.products =ourpets.get_ourpets_products().query();
       };
@@ -51,6 +54,7 @@ angular.module('sampleApp')
 
 
       //start iph
+      $scope.Top5Iph= iph.get_iph_top5_products().query();
       $scope.get_iph_products = function() {
           $scope.products =iph.get_iph_products().query();
       };
