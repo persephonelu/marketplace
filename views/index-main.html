@@ -215,7 +215,7 @@
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">
-                                <div ng-repeat="totalTop5 in totalProducts | orderBy: ['-clickcount'] | limitTo: 5">
+                                <div ng-repeat="totalTop5 in totalProducts | orderBy: orderByFunction | limitTo: 5">
                                     <div class="col-sm-4 topproduct">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
@@ -230,7 +230,7 @@
                                 </div>
                             </div>
                             <div class="item">
-                                <div ng-repeat="totalTop5 in totalProducts | orderBy: ['-clickcount'] | limitTo: 5">
+                                <div ng-repeat="totalTop5 in totalProducts | orderBy: orderByFunction | limitTo: 5">
                                     <div class="col-sm-4 topproduct">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">

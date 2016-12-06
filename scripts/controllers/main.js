@@ -126,7 +126,10 @@ angular.module('sampleApp')
               $scope.totalProducts.push(data[i]);
           }
       });
-      console.log($scope.totalProducts);
+
+      $scope.orderByFunction = function(top5){
+          return parseInt(-top5.clickcount);
+      };
   })
 
 
