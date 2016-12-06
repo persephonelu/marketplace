@@ -27,8 +27,9 @@ angular.module('sampleApp')
       };
 
       //start pets
+
+
       $scope.Top5Pets= ourpets.get_ourpets_top5_products().query();
-      console.log($scope.Top5Pets);
       $scope.get_ourpets_products = function() {
           $scope.category = 2;
           console.log($scope.category);
@@ -97,14 +98,33 @@ angular.module('sampleApp')
           $location.path("/product");
       };
 
-      $scope.sortTop5Detail = function (productId) {
 
-          $scope.Top5Games = gamearts.get_gamearts_top5_products().query();
-          $scope.Top5Pets= ourpets.get_ourpets_top5_products().query();
-          $scope.Top5Jobs= codejob.get_codejob_top5_products().query();
-          $scope.Top5Iph= iph.get_iph_top5_products().query();
-
-      };
+      $scope.totalProducts = [];
+      $scope.Top5Games = gamearts.get_gamearts_top5_products().query(function(data) {
+          for(var i = 0; i < 5; i++)
+          {
+              $scope.totalProducts.push(data[i]);
+          }
+      });
+      $scope.Top5Pets = ourpets.get_ourpets_top5_products().query(function(data) {
+          for(var i = 0; i < 5; i++)
+          {
+              $scope.totalProducts.push(data[i]);
+          }
+      });
+      $scope.Top5Jobs = codejob.get_codejob_top5_products().query(function(data) {
+          for(var i = 0; i < 5; i++)
+          {
+              $scope.totalProducts.push(data[i]);
+          }
+      });
+      $scope.Top5Iphs = iph.get_iph_top5_products().query(function(data) {
+          for(var i = 0; i < 5; i++)
+          {
+              $scope.totalProducts.push(data[i]);
+          }
+      });
+      console.log($scope.totalProducts);
   })
 
 
