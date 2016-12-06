@@ -141,7 +141,7 @@ angular.module('sampleApp')
           }
           $scope.encryptionMsg = md5.createHash($scope.presentpassword);
 
-          var loginSuccess = userAuth.login($scope.presentusername, $scope.presentpassword).query(function() { //$scope.encryptionMsg
+          var loginSuccess = userAuth.login($scope.presentusername, $scope.encryptionMsg).query(function() { //$scope.encryptionMsg
               var ls = loginSuccess[0];
               //console.log(ls);
               if (ls.result === 1) {
