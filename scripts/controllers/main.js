@@ -70,9 +70,15 @@ angular.module('sampleApp')
       };
       //end iph
 
+      /*
+      $scope.setCurrentCat = function (messageType) {
+          $scope.category = messageType;
+      };*/
+
 
       $scope.showProductDetail = function (productId) {
           currProduct.currProduct = $scope.products[productId - 1];
+
           if ($scope.category === 1)
           {
               gamearts.update_gamearts_product_clickcount(productId).query();
@@ -89,6 +95,7 @@ angular.module('sampleApp')
           {
               iph.update_iph_product_clickcount(productId).query();
           }
+
           //alert(currProduct.currProduct.productName);
           $location.path("/product");
       };
