@@ -113,8 +113,13 @@ angular.module('marketplace_services', [])
         return {
             registerNewUser: function (newusername, newpassword) { //user sign-up
                 return $resource(codejob_url + 'registerNewUser.php?usr=' +
-                    newusername.toString() + '&&pw=' + newpassword.toString(), null, {'query': {method: 'GET', isArray: false}});//query
+                    newusername.toString() + '&&pw=' + newpassword.toString(), null, {'query': {method: 'GET', isArray: true}});//query
+            },
+            login: function (presentusername, presentpassword) { //user login
+                return $resource(codejob_url + 'userLogin.php?usr=' +
+                    presentusername.toString() + '&&pw=' + presentpassword.toString(), null, {'query': {method: 'GET', isArray: true}});//query
             }
+
         };
     });
 

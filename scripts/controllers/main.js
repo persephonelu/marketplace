@@ -144,32 +144,34 @@ angular.module('sampleApp')
       $scope.productCart = cart.getCart();
   })
 
-  .controller('LoginCtrl', function ($scope, md5) {
+  .controller('LoginCtrl', function ($scope, md5, userAuth) {
       $scope.checkbox = true;
 
       $scope.login = function () {
-          if ($scope.username === undefined)
+          if ($scope.presentusername === undefined)
           {
               alert('Username can not be null');
               return;
           }
 
-          if ($scope.password === undefined)
+          if ($scope.presentpassword === undefined)
           {
               alert('Password can not be null');
               return;
           }
-          $scope.encryptionMsg = md5.createHash($scope.password);
-          userAuth.registerNewUser($scope.newusername, $scope.encryptionMsg).query();
-          var registerSuccess = userAuth.registerNewUser($scope.newusername, $scope.encryptionMsg).query();
-          console.log(registerSuccess);
-          console.log(Boolean(registerSuccess));
-          if (registerSuccess.success === undefined) {
-            return alert('Register fail')
-          }
-          else {
-            return alert('Register complete')
-          }
+          $scope.encryptionMsg = md5.createHash($scope.presentpassword);
+
+          var loginSuccess = userAuth.login($scope.presentusername, $scope.encryptionMsg).query(function() { //$scope.encryptionMsg
+              var ls = loginSuccess[0];
+              //console.log(ls);
+              if (ls.result === 1) {
+                  return alert('Login success');
+              }
+              else {
+                  return alert('Login fail');
+              }
+          });
+
 
           console.log('encryption password is ' + $scope.encryptionMsg);
       };
@@ -187,6 +189,19 @@ angular.module('sampleApp')
               return;
           }
           $scope.encryptionMsg = md5.createHash($scope.newpassword);
+
+          var registerSuccess = userAuth.registerNewUser($scope.newusername, $scope.encryptionMsg).query(function() {
+              var rs = registerSuccess[0];
+              //console.log(rs);
+              if (rs.result === 1) {
+                  return alert('Register success');
+              }
+              else {
+                  return alert('Register fail');
+              }
+          });
+
+
           console.log('encryption password is ' + $scope.encryptionMsg);
       };
   });
