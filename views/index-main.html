@@ -215,6 +215,24 @@
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">
+                                <div ng-repeat="iph in Top5Iph | filter:{id: '5'} ">
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img ng-src="{{iph.productImg}}" ng-click="showProductDetail(iph.id)" alt="" />
+                                                    <h2>${{iph.price}}</h2>
+                                                    <p>{{iph.productName}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-inner">
+                            <div class="item active">
                                 <div class="col-sm-4">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
