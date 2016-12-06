@@ -1,3 +1,16 @@
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="js/jquery.scrollUp.min.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/price-range.js"></script>
+
+
 <section id="slider"><!--slider-->
     <div class="container">
         <div class="row">
@@ -123,10 +136,10 @@
         <div class="category-tab"><!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a show-tab href="#game" data-toggle="tab" ng-model="category" ng-click="get_gamearts_products()">Games</a></li>
-                            <li><a show-tab href="#pets" data-toggle="tab" ng-model="category" ng-click="get_ourpets_products()">Pets</a></li>
-                            <li><a show-tab href="#jobs" data-toggle="tab" ng-model="category" ng-click="get_codejob_products()">Jobs</a></li>
-                            <li><a show-tab href="#music" data-toggle="tab" ng-model="category" ng-click="get_iph_products()">Musics</a></li>
+                            <li class="active"><a show-tab href="#game" data-toggle="tab" ng-click="get_gamearts_products()">Games</a></li>
+                            <li><a show-tab href="#pets" data-toggle="tab" ng-click="get_ourpets_products()">Pets</a></li>
+                            <li><a show-tab href="#jobs" data-toggle="tab" ng-click="get_codejob_products()">Jobs</a></li>
+                            <li><a show-tab href="#music" data-toggle="tab" ng-click="get_iph_products()">Musics</a></li>
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -135,7 +148,7 @@
                                 <div class="col-sm-3 product" >
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
-                                            <div class="productinfo text-center">
+                                            <div class="productinfo text-center" >
                                                 <img ng-src="{{game.productImg}}"  ng-click="showProductDetail(game.id)" alt="" />
                                                 <h2>${{game.price}}</h2>
                                                 <p>{{game.productName}}</p>
@@ -151,7 +164,7 @@
                                 <div class="col-sm-3 product">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
-                                            <div class="productinfo text-center">
+                                            <div class="productinfo text-center" >
                                                 <img ng-src="{{pets.productImg}}" ng-click="showProductDetail(pets.id)" alt="" />
                                                 <h2>${{pets.price}}</h2>
                                                 <p>{{pets.productName}}</p>
@@ -167,7 +180,7 @@
                                 <div class="col-sm-3 product">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
-                                            <div class="productinfo text-center">
+                                            <div class="productinfo text-center" >
                                                 <img ng-src="{{jobs.productImg}}" ng-click="showProductDetail(jobs.id)" alt="" />
                                                 <h2>${{jobs.price}}</h2>
                                                 <p>{{jobs.productName}}</p>
@@ -183,7 +196,7 @@
                                 <div class="col-sm-3 product">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
-                                            <div class="productinfo text-center">
+                                            <div class="productinfo text-center" >
                                                 <img ng-src="{{iph.productImg}}" ng-click="showProductDetail(iph.id)" alt="" />
                                                 <h2>${{iph.price}}</h2>
                                                 <p>{{iph.productName}}</p>
@@ -321,12 +334,3 @@
         </div>
     </div>
 </section>
-<script src="js/jquery.scrollUp.min.js"></script>
-<script src="js/price-range.js"></script>
-<script src="js/jquery.prettyPhoto.js"></script>
-<script src="js/main.js"></script>
-
-<!-- build:js(.) scripts/vendor.js -->
-<!-- bower:js -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.min.js"></script>
