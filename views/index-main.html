@@ -123,10 +123,10 @@
         <div class="category-tab"><!--category-tab-->
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a show-tab href="#game" data-toggle="tab">Games</a></li>
-                            <li><a show-tab href="#pets" data-toggle="tab">Pets</a></li>
-                            <li><a show-tab href="#jobs" data-toggle="tab">Jobs</a></li>
-                            <li><a show-tab href="#music" data-toggle="tab">Musics</a></li>
+                            <li class="active"><a show-tab href="#game" data-toggle="tab" ng-model="category" ng-click="get_gamearts_products()">Games</a></li>
+                            <li><a show-tab href="#pets" data-toggle="tab" ng-model="category" ng-click="get_ourpets_products()">Pets</a></li>
+                            <li><a show-tab href="#jobs" data-toggle="tab" ng-model="category" ng-click="get_codejob_products()">Jobs</a></li>
+                            <li><a show-tab href="#music" data-toggle="tab" ng-model="category" ng-click="get_iph_products()">Musics</a></li>
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -136,7 +136,7 @@
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img ng-src="{{game.productImg}}" ng-click="showProductDetail(game.id)" alt="" />
+                                                <img ng-src="{{game.productImg}}"  ng-click="showProductDetail(game.id)" alt="" />
                                                 <h2>${{game.price}}</h2>
                                                 <p>{{game.productName}}</p>
                                             </div>
@@ -200,6 +200,24 @@
                     <h2 class="title text-center">recommended items</h2>
 
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div ng-repeat="iph in Top5Iph | filter:{id: '5'} ">
+                                    <div class="col-sm-4">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img ng-src="{{iph.productImg}}" ng-click="showProductDetail(iph.id)" alt="" />
+                                                    <h2>${{iph.price}}</h2>
+                                                    <p>{{iph.productName}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="carousel-inner">
                             <div class="item active">
                                 <div class="col-sm-4">

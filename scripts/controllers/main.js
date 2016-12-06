@@ -16,6 +16,7 @@ angular.module('sampleApp')
 
       $scope.get_gamearts_products = function() {
           $scope.category = 1;
+          console.log($scope.category);
           $scope.products = gamearts.get_gamearts_products().query();
       };
 
@@ -27,8 +28,10 @@ angular.module('sampleApp')
 
       //start pets
       $scope.Top5Pets= ourpets.get_ourpets_top5_products().query();
+      console.log($scope.Top5Pets);
       $scope.get_ourpets_products = function() {
           $scope.category = 2;
+          console.log($scope.category);
           $scope.products =ourpets.get_ourpets_products().query();
       };
 
@@ -44,6 +47,7 @@ angular.module('sampleApp')
       $scope.Top5Jobs= codejob.get_codejob_top5_products().query();
       $scope.get_codejob_products = function() {
           $scope.category = 3;
+          console.log($scope.category);
           $scope.products = codejob.get_codejob_products().query();
       };
 
@@ -92,7 +96,18 @@ angular.module('sampleApp')
           //alert(currProduct.currProduct.productName);
           $location.path("/product");
       };
+
+      $scope.sortTop5Detail = function (productId) {
+
+          $scope.Top5Games = gamearts.get_gamearts_top5_products().query();
+          $scope.Top5Pets= ourpets.get_ourpets_top5_products().query();
+          $scope.Top5Jobs= codejob.get_codejob_top5_products().query();
+          $scope.Top5Iph= iph.get_iph_top5_products().query();
+
+      };
   })
+
+
 
   .controller('ProductCtrl', function ($scope, $sce, currProduct, cart) {
       $scope.product = currProduct.currProduct;
@@ -109,7 +124,7 @@ angular.module('sampleApp')
       $scope.productCart = cart.getCart();
   })
 
-  .controller('LoginCtrl', function ($scope, md5, userAuth) {
+  .controller('LoginCtrl', function ($scope, md5) {
       $scope.checkbox = true;
 
       $scope.login = function () {
@@ -128,18 +143,19 @@ angular.module('sampleApp')
           console.log('encryption password is ' + $scope.encryptionMsg);
       };
 
-      $scope.registerNewUser = function () { //user sign-up
-          if ($scope.newusername === undefined) {
+      $scope.registerNewUser = function () {
+          if ($scope.newusername === undefined)
+          {
               alert('Username can not be null');
               return;
           }
 
-          if ($scope.newpassword === undefined) {
+          if ($scope.newpassword === undefined)
+          {
               alert('Password can not be null');
               return;
           }
           $scope.encryptionMsg = md5.createHash($scope.newpassword);
-          userAuth.registerNewUser($scope.newusername, $scope.encryptionMsg).query();
           console.log('encryption password is ' + $scope.encryptionMsg);
       };
   });
