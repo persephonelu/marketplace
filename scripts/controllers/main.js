@@ -146,7 +146,19 @@ angular.module('sampleApp')
               return;
           }
           $scope.encryptionMsg = md5.createHash($scope.newpassword);
-          userAuth.registerNewUser($scope.newusername, $scope.encryptionMsg).query();
+
+          var registerSuccess = userAuth.registerNewUser($scope.newusername, $scope.encryptionMsg).query(function() {
+              var rs = registerSuccess[0];
+              console.log(rs);
+              if (rs.result === 1) {
+                  return alert('Register success');
+              }
+              else {
+                  return alert('Register fail');
+              }
+
+          })
+
           /*
           var registerSuccess = userAuth.registerNewUser($scope.newusername, $scope.encryptionMsg).query();
           console.log(registerSuccess);
