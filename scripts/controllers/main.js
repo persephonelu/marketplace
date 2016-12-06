@@ -100,9 +100,11 @@ angular.module('sampleApp')
 
 
       $scope.totalProducts = [];
+      console.log;
       $scope.Top5Games = gamearts.get_gamearts_top5_products().query(function(data) {
           for(var i = 0; i < 5; i++)
           {
+
               $scope.totalProducts.push(data[i]);
           }
       });
