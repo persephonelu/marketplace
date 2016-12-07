@@ -16,7 +16,7 @@ angular.module('sampleApp')
 
       $scope.get_gamearts_products = function() {
           $scope.category = 1;
-          console.log($scope.category);
+          //console.log($scope.category);
           $scope.products = gamearts.get_gamearts_products().query();
       };
 
@@ -32,7 +32,7 @@ angular.module('sampleApp')
       $scope.Top5Pets= ourpets.get_ourpets_top5_products().query();
       $scope.get_ourpets_products = function() {
           $scope.category = 2;
-          console.log($scope.category);
+          //console.log($scope.category);
           $scope.products =ourpets.get_ourpets_products().query();
       };
 
@@ -48,7 +48,7 @@ angular.module('sampleApp')
       $scope.Top5Jobs= codejob.get_codejob_top5_products().query();
       $scope.get_codejob_products = function() {
           $scope.category = 3;
-          console.log($scope.category);
+          //console.log($scope.category);
           $scope.products = codejob.get_codejob_products().query();
       };
 
@@ -95,12 +95,12 @@ angular.module('sampleApp')
               iph.update_iph_product_clickcount(productId).query();
           }
           //alert(currProduct.currProduct.productName);
-          $location.path("/product");
+          $location.path("/product/"+ $scope.category);
       };
 
 
       $scope.totalProducts = [];
-      console.log;
+
       $scope.Top5Games = gamearts.get_gamearts_top5_products().query(function(data) {
           for(var i = 0; i < 5; i++)
           {
@@ -130,18 +130,31 @@ angular.module('sampleApp')
       $scope.orderByFunction = function(top5){
           return parseInt(-top5.clickcount);
       };
-  })
+  }) // end of MainCtrl
 
 
-
-  .controller('ProductCtrl', function ($scope, $sce, currProduct, cart) {
+  .controller('ProductCtrl', function ($scope, $sce, currProduct, cart, $routeParams, productReviewRating) {
       $scope.product = currProduct.currProduct;
       $scope.quantity = 1;
+      $scope.category = $routeParams.category;
+      //$scope.rating = $scope.getProductRating;
+      //console.log("rating:"+$scope.rating);
+
 
       $scope.description = $sce.trustAsHtml($scope.product.description);
+      //console.log("category is " + $scope.category);
 
       $scope.addProductToCart = function () {
           cart.addToCart({name:$scope.product.productName, quantity:$scope.quantity, price:$scope.product.price, img:$scope.product.productImg});
+      };
+
+      $scope.getProductRating = function () {
+          var productRating = productReviewRating.getProductRating($scope.category, $scope.product.id).query(function() { //$scope.encryptionMsg
+              var pr = productRating[0];
+              console.log("get-return-rating"+pr.avg_rating);
+              //console.log(pr.category);
+              $scope.rating = pr.avg_rating;
+          });
       };
   })
 
@@ -205,8 +218,6 @@ angular.module('sampleApp')
                   return alert('Register fail');
               }
           });
-
-
           console.log('encryption password is ' + $scope.encryptionMsg);
       };
   });

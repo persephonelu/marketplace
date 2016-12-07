@@ -39,10 +39,15 @@ angular
           controller: 'ContactCtrl'
       })
 
-      .when('/product', {
+        .when('/product/:category', { //route for category
+            templateUrl: 'views/product-details.html',
+            controller: 'ProductCtrl'
+        })
+
+      /*.when('/product', {
           templateUrl: 'views/product-details.html',
           controller: 'ProductCtrl'
-      })
+      })*/
 
       .when('/cart', {
           templateUrl: 'views/cart.html',
@@ -53,7 +58,11 @@ angular
           templateUrl: 'views/login.html',
           controller: 'LoginCtrl'
       })
+
+
       .otherwise({
         redirectTo: '/'
       });
+
+
   });
