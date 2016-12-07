@@ -158,14 +158,14 @@ angular.module('sampleApp')
       };
 
       $scope.getProductReview = function () {
-          var productReview = productReviewRating.getProductReview($scope.category, $scope.product.id).query(function() { //$scope.encryptionMsg
-              var prw = productReview[0];
+          $scope.productReviews = productReviewRating.getProductReview($scope.category, $scope.product.id).query();//(function() { //$scope.encryptionMsg
+              //var prw = productReview;
               //console.log("get-return-rating"+pr.avg_rating);
               //console.log(prw.username);
               //$scope.rating = pr.avg_rating;
-              $scope.username = prw.username;
-              $scope.comments = prw.comments;
-          });
+              //$scope.username = prw.username;
+              //$scope.comments = prw.comments;
+          //});
       };
 
 
