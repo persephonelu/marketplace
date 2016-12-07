@@ -96,6 +96,11 @@ angular.module('marketplace_services', [])
         return currProduct;
     })
 
+    .factory('currUser', function() {
+        var currUser = {};
+        return currUser;
+    })
+
     .factory('cart', function () {
         var cart = [];
         return {
