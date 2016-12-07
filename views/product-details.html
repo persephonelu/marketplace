@@ -12,6 +12,7 @@
 				<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 				<h2>{{product.productName}}</h2>
 				<p>Product ID: {{product.id}}</p>
+				<p ng-init="getProductRating()">Rating: {{rating}}</p>
 				<img src="images/product-details/rating.png" alt="" />
 				<span>
 					<span>US ${{product.price}}</span>
@@ -42,7 +43,17 @@
 				</div>
 			</div>
 			<div class="tab-pane fade" id="reviews" >
-				<div class="col-sm-12">
+				<div class="col-sm-12" ng-init="getProductReview()" >
+					<div ng-repeat="productReview in productReviews" >
+							<div class="single-products">
+								<div class="productinfo text-left">
+									<h2>Username: {{productReview.username}}</h2>
+									<p>Comments: {{productReview.comments}}</p>
+									<p>Rating: {{productReview.rating}}</p>
+								</div>
+							</div>
+					</div>
+
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 					<p><b>Write Your Review</b></p>
 
@@ -52,7 +63,7 @@
 							<input type="email" placeholder="Email Address"/>
 						</span>
 						<textarea name="" ></textarea>
-						<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
+						<b>Rating:</b> <img src="images/product-details/rating.png" alt="" />
 						<button type="button" class="btn btn-default pull-right">
 							Submit
 						</button>

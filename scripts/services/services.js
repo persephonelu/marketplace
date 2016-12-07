@@ -121,5 +121,21 @@ angular.module('marketplace_services', [])
             }
 
         };
+    })
+
+    .factory('productReviewRating', function($resource) {
+        return {
+            getProductRating: function (category, id) {
+                return $resource(codejob_url + 'getProductRating.php?category=' +
+                    category.toString() + '&&productId=' + id.toString(), null, {'query': {method: 'GET', isArray: true}});
+            },
+
+            getProductReview: function (category, id) {
+                return $resource(codejob_url + 'getProductReview.php?category=' +
+                    category.toString() + '&&productId=' + id.toString(), null, {'query': {method: 'GET', isArray: true}});
+
+            }
+
+        };
     });
 
