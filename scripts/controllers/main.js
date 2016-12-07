@@ -100,7 +100,6 @@ angular.module('sampleApp')
 
 
       $scope.totalProducts = [];
-      console.log;
       $scope.Top5Games = gamearts.get_gamearts_top5_products().query(function(data) {
           for(var i = 0; i < 5; i++)
           {
@@ -209,4 +208,21 @@ angular.module('sampleApp')
 
           console.log('encryption password is ' + $scope.encryptionMsg);
       };
-  });
+  })
+
+  .controller('fbLoginCtrl',function($scope) {
+    $scope.fbLogin = function() {
+        FB.login(function(response) {
+            if (response.authResponse) {
+                console.log('Welcome!  Fetching your information.... ');
+                FB.api('/me', function(response) {
+                    console.log('Good to see you, ' + response.name + '.');
+                    $scope.loginname = response.name;
+                });
+            } else {
+                console.log('User cancelled login or did not fully authorize.');
+            }
+        });
+    };
+    console.log($scope.fbLogin);
+})

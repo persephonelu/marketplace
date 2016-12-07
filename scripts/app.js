@@ -8,6 +8,24 @@
  *
  * Main module of the application.
  */
+
+window.fbAsyncInit = function() {
+    FB.init({
+        appId      : '732081800281253',
+        xfbml      : true,
+        version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+};
+
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
 angular
   .module('sampleApp', [
     'ngAnimate',
@@ -48,12 +66,19 @@ angular
           templateUrl: 'views/cart.html',
           controller: 'CartCtrl'
       })
+        .when('/fb',{
+            templateUrl:'views/fb.html',
+            controller:'fbLoginCtrl'
+        })
 
       .when('/login', {
           templateUrl: 'views/login.html',
           controller: 'LoginCtrl'
       })
+
       .otherwise({
         redirectTo: '/'
       });
   });
+
+
