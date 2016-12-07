@@ -151,11 +151,24 @@ angular.module('sampleApp')
       $scope.getProductRating = function () {
           var productRating = productReviewRating.getProductRating($scope.category, $scope.product.id).query(function() { //$scope.encryptionMsg
               var pr = productRating[0];
-              console.log("get-return-rating"+pr.avg_rating);
+              //console.log("get-return-rating"+pr.avg_rating);
               //console.log(pr.category);
               $scope.rating = pr.avg_rating;
           });
       };
+
+      $scope.getProductReview = function () {
+          var productReview = productReviewRating.getProductReview($scope.category, $scope.product.id).query(function() { //$scope.encryptionMsg
+              var prw = productReview[0];
+              //console.log("get-return-rating"+pr.avg_rating);
+              //console.log(prw.username);
+              //$scope.rating = pr.avg_rating;
+              $scope.username = prw.username;
+              $scope.comments = prw.comments;
+          });
+      };
+
+
   })
 
   .controller('CartCtrl', function ($scope, cart) {
