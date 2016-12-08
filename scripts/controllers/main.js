@@ -80,9 +80,11 @@ angular.module('sampleApp')
           currProduct.currProduct = $scope.products[productId - 1];
           $scope.product = currProduct.currProduct;
           console.log($scope.product);
-          $scope.visited = function () {
-              visited.addVisited($scope.product);
-          }
+          visited.addVisited($scope.product);
+
+          // $scope.visited = function () {
+          //     visited.addVisited($scope.product);
+          // }
 
           if ($scope.category === 1)
           {
