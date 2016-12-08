@@ -59,12 +59,12 @@
 
 					<form action="#">
 						<span>
-							<input type="text" placeholder="Your Name"/>
-							<input type="email" placeholder="Email Address"/>
+						<input type="text" placeholder="Your Name" ng-model="addReviewUsername"/><input type="email" placeholder="Email Address" ng-model="addReviewEmail"/>
 						</span>
-						<textarea name="" ></textarea>
-						<b>Rating:</b> <img src="images/product-details/rating.png" alt="" />
-						<button type="button" class="btn btn-default pull-right">
+						<textarea name="" ng-model="addReviewComments"></textarea>
+						<b ng-model="addReviewRating" ng-init="addReviewRating=1">Rating:</b> <img src="images/product-details/rating.png" alt="" />
+						<button type="button" class="btn btn-default pull-right" ng-click="submitForm(); updateProductRating()" >
+
 							Submit
 						</button>
 					</form>

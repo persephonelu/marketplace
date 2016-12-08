@@ -127,15 +127,66 @@ angular.module('marketplace_services', [])
         return {
             getProductRating: function (category, id) {
                 return $resource(codejob_url + 'getProductRating.php?category=' +
-                    category.toString() + '&&productId=' + id.toString(), null, {'query': {method: 'GET', isArray: true}});
+                    category.toString() + '&&productId=' + id.toString(), null, {
+                    'query': {
+                        method: 'GET',
+                        isArray: true
+                    }
+                });
             },
 
             getProductReview: function (category, id) {
                 return $resource(codejob_url + 'getProductReview.php?category=' +
-                    category.toString() + '&&productId=' + id.toString(), null, {'query': {method: 'GET', isArray: true}});
+                    category.toString() + '&&productId=' + id.toString(), null, {
+                    'query': {
+                        method: 'GET',
+                        isArray: true
+                    }
+                });
+
+            },
+
+            updateProductRating: function (category, id, rating) {
+                return $resource(codejob_url + 'updateProductRating.php?category=' +
+                    category.toString() + '&&productId=' + id.toString() + '&&rating=' + rating.toString(), null, {
+                    'query': {
+                        method: 'GET',
+                        isArray: true
+                    }
+                });
 
             }
 
+            /*
+            postProductReview: function (category, id, addReviewUsername, addReviewEmail, addReviewComments, addReviewRating) { //username, category, id, email, comments, rating
+                var data = new Object();
+                data.username = addReviewUsername;
+                data.email = addReviewEmail;
+                data.catagory = category;
+                data.product_id = id;
+                data.comments = addReviewComments;
+                data.rating = addReviewRating;
+                var jdata = JSON.stringify(data);
+                //console.log(jdata);
+            //
+                return $resource(
+                    codejob_url + 'postProductReview.php?', //url
+                    //{"username":"drjkuo", "category":"2", "product_id":"2", "comments":"soso", "rating":"3"}, //data
+                    //{"username":addReviewUsername, "category":category, "product_id":id, "comments":addReviewComments, "rating":addReviewRating},
+                    {jdata},
+                    {
+                        create: { //create
+                            headers : {'Content-Type': 'application/json'},
+                            method: "POST"
+                            //isArray: true
+                        }
+
+                    }
+
+                );
+
+
+            } */
         };
     });
 

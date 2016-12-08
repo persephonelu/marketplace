@@ -133,7 +133,7 @@ angular.module('sampleApp')
   }) // end of MainCtrl
 
 
-  .controller('ProductCtrl', function ($scope, $sce, currProduct, cart, $routeParams, productReviewRating) {
+  .controller('ProductCtrl', function ($http, $scope, $sce, currProduct, cart, $routeParams, productReviewRating) {
       $scope.product = currProduct.currProduct;
       $scope.quantity = 1;
       $scope.category = $routeParams.category;
@@ -159,13 +159,65 @@ angular.module('sampleApp')
 
       $scope.getProductReview = function () {
           $scope.productReviews = productReviewRating.getProductReview($scope.category, $scope.product.id).query();//(function() { //$scope.encryptionMsg
-              //var prw = productReview;
-              //console.log("get-return-rating"+pr.avg_rating);
-              //console.log(prw.username);
-              //$scope.rating = pr.avg_rating;
-              //$scope.username = prw.username;
-              //$scope.comments = prw.comments;
-          //});
+          //var prw = productReview;
+          //console.log("get-return-rating"+pr.avg_rating);
+          //console.log(prw.username);
+          //$scope.rating = pr.avg_rating;
+          //$scope.username = prw.username;
+          //$scope.comments = prw.comments;
+      };
+
+      $scope.updateProductRating = function () {
+          $scope.productReviews = productReviewRating.updateProductRating($scope.category, $scope.product.id, $scope.addReviewRating).query();//(function() { //$scope.encryptionMsg
+          //var prw = productReview;
+          //console.log("get-return-rating"+pr.avg_rating);
+          //console.log(prw.username);
+          //$scope.rating = pr.avg_rating;
+          //$scope.username = prw.username;
+          //$scope.comments = prw.comments;
+      };
+
+      //$scope.postProductReview = function () {
+          //$scope.addReview = {};
+          // productReviewRating.postProductReview($scope.addReviewUsername, $scope.category, $scope.product.id,
+              //$scope.addReviewEmail, $scope.addReviewComments, $scope.addReviewRating).query();//(function() { //$scope.encryptionMsg
+          //productReviewRating.postProductReview($scope.category, $scope.product.id, $scope.addReviewUsername, $scope.addReviewEmail, $scope.addReviewComments, $scope.addReviewRating).query();
+          //var prw = productReview;
+          //console.log("get-return-rating"+pr.avg_rating);
+          //console.log(prw.username);
+          //$scope.rating = pr.avg_rating;
+          //$scope.username = prw.username;
+          //$scope.comments = prw.comments;
+      //};
+
+
+      $scope.submitForm = function() {
+          var data = new Object();
+          data.username = $scope.addReviewUsername;
+          data.email = $scope.addReviewEmail;
+          data.category = $scope.category;
+          data.product_id = $scope.product.id;
+          data.comments = $scope.addReviewComments;
+          data.rating = $scope.addReviewRating;
+          var jdata = JSON.stringify(data);
+          //console.log(jdata);
+          // Posting data
+          $http({
+              method  : 'POST',
+              url     : 'http://www.codejob.tech/postProductReview.php?',
+              data    : jdata, //forms user object
+              headers : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+          })
+              .success(function(data) {
+                  if (data.errors) {
+                      // Showing errors.
+                      $scope.errorName = data.errors.name;
+                      $scope.errorUserName = data.errors.username;
+                      $scope.errorEmail = data.errors.email;
+                  } else {
+                      $scope.message = data.message;
+                  }
+              });
       };
 
 
