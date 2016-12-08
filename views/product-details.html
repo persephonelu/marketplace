@@ -1,5 +1,104 @@
+<<<<<<< HEAD
 
 
+=======
+<link href="styles/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+
+
+<div class="col-sm-9 padding-right">
+	<div class="product-details"><!--product-details-->
+		<div class="col-sm-5">
+			<div class="view-product">
+				<img ng-src="{{product.productImg}}" alt="" />
+				<h3>{{product.productName}}</h3>
+			</div>
+
+		</div>
+		<div class="col-sm-7">
+			<div class="product-information"><!--/product-information-->
+				<img src="images/product-details/new.jpg" class="newarrival" alt="" />
+				<h2>{{product.productName}}</h2>
+				<p>Product ID: {{product.id}}</p>
+        <div ng-init="getProductRating()">
+          <span>Rating: {{rating}}</span>
+          <input-stars style="display: inline-flex" max="5" ng-model="rating" readonly="readonly" ></input-stars>
+        </div>
+
+
+
+				<span>
+					<span>US ${{product.price}}</span>
+					<label>Quantity:</label>
+					<input type="text" ng-model="quantity" value="{{quantity}}"/>
+
+
+					<button type="button" class="btn btn-fefault cart" ng-click="addProductToCart()">
+						<i class="fa fa-shopping-cart"></i>
+						Add to cart
+					</button>
+				</span>
+				<p><b>Availability:</b> In Stock</p>
+				<p><b>Condition:</b> New</p>
+			</div><!--/product-information-->
+		</div>
+	</div><!--/product-details-->
+
+	<div class="category-tab shop-details-tab"><!--category-tab-->
+		<div class="col-sm-12">
+			<ul class="nav nav-tabs">
+				<li class="active"><a show-tab href="#details" data-toggle="tab">Details</a></li>
+				<li><a show-tab href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+			</ul>
+		</div>
+		<div class="tab-content">
+			<div class="tab-pane fade active in" id="details" >
+				<div class="col-sm-12">
+					<article ng-bind-html="description"></article>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="reviews" >
+				<div class="col-sm-12" ng-init="getProductReview()" >
+					<div ng-repeat="productReview in productReviews" >
+							<div class="single-products">
+								<div class="productinfo text-left">
+									<h2>Username: {{productReview.username}}</h2>
+									<p>Comments: {{productReview.comments}}</p>
+									<p>Rating: {{productReview.rating}}</p>
+								</div>
+							</div>
+					</div>
+
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+					<p><b>Write Your Review</b></p>
+
+					<form action="#">
+						<span>
+							<input type="text" placeholder="Your Name"/>
+							<input type="email" placeholder="Email Address"/>
+						</span>
+						<textarea name="" ></textarea>
+						<b>Rating:</b>
+            <div ng-controller="StarCtrl">
+              <ul class="rating">
+                <li ng-repeat="n in [].constructor(maxRating) track by $index">
+                  <span ng-click="rateBy($index+1)" ng-show="ratedBy > $index" class="filled">&#9733;</span>
+                  <span ng-click="rateBy($index+1)" ng-show="ratedBy <= $index">&#9733;</span>
+                </li>
+              </ul>
+            </div>
+						<button type="button" class="btn btn-default pull-right">
+							Submit
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+=======
+>>>>>>> bfebd20fbf1e5020f64cf150e349c331b088ca57
 <div class="col-sm-9 padding-right">
 	<div class="product-details"><!--product-details-->
 		<div class="col-sm-5">

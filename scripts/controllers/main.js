@@ -80,7 +80,9 @@ angular.module('sampleApp')
           currProduct.currProduct = $scope.products[productId - 1];
           $scope.product = currProduct.currProduct;
           console.log($scope.product);
-          visited.addVisited($scope.product);
+          $scope.visited = function () {
+              visited.addVisited($scope.product);
+          }
 
           if ($scope.category === 1)
           {
@@ -231,6 +233,15 @@ angular.module('sampleApp')
 
   })
 
+  .controller('StarCtrl', ['$scope', function ($scope) {
+    $scope.maxRating = 5;
+    $scope.ratedBy = 0;
+    $scope.rateBy = function (star) {
+        $scope.ratedBy = star;
+      }
+    }
+  ])
+
   .controller('CartCtrl', function ($scope, cart) {
       $scope.productCart = cart.getCart();
   })
@@ -314,6 +325,8 @@ angular.module('sampleApp')
             }
         });
     };
+    console.log($scope.fbLogin);
+});
     console.log($scope.fbLogin);*/
 
     .controller('fbLoginCtrl', function($scope, ezfb, $window, $location) {
