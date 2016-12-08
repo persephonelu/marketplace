@@ -8,7 +8,7 @@
  * Controller of the sampleApp
  */
 angular.module('sampleApp')
-  .controller('MainCtrl', function ($scope, $http, $location, gamearts, currProduct, codejob, ourpets, iph) {
+  .controller('MainCtrl', function ($scope, $http, $location, currProduct, visited, gamearts, codejob, ourpets, iph) {
       $scope.category=1;
       $scope.products = gamearts.get_gamearts_products().query();
       $scope.Top5Games = gamearts.get_gamearts_top5_products().query();
@@ -78,6 +78,10 @@ angular.module('sampleApp')
 
       $scope.showProductDetail = function (productId) {
           currProduct.currProduct = $scope.products[productId - 1];
+          $scope.product = currProduct.currProduct;
+          console.log($scope.product);
+          visited.addVisited($scope.product);
+
           if ($scope.category === 1)
           {
               gamearts.update_gamearts_product_clickcount(productId).query();
@@ -95,9 +99,12 @@ angular.module('sampleApp')
               iph.update_iph_product_clickcount(productId).query();
           }
           //alert(currProduct.currProduct.productName);
+
           $location.path("/product/"+ $scope.category);
       };
 
+      $scope.productVisited = visited.getVisited();
+      console.log($scope.productVisited);
 
       $scope.totalProducts = [];
 
@@ -130,6 +137,7 @@ angular.module('sampleApp')
       $scope.orderByFunction = function(top5){
           return parseInt(-top5.clickcount);
       };
+
   }) // end of MainCtrl
 
 

@@ -896,9 +896,8 @@ h2.title {
 .productinfo img{
   height: 240px;
   width: 200px;
-  /*
-  width: 100%;
-  */
+  /*width: 100%;*/
+
 }
 
 .productinfo{
