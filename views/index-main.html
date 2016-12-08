@@ -123,7 +123,11 @@
                                         <img ng-src="{{product.productImg}}" ng-click="showProductDetail(product.id)" alt="" />
                                         <h2>${{product.price}}</h2>
                                         <p>{{product.productName}}</p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <!--<a href="#" class="btn btn-default add-to-cart" ng-click="addProductToCart()" ><i class="fa fa-shopping-cart" ></i>Add to cart</a>-->
+                                        <button type="button" class="btn btn-fefault add-to-cart"  ng-click="addProductToCart()">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            Add to cart
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -208,21 +212,43 @@
                         </div>
                     </div>
                 </div><!--/category-tab-->
+        <div class="recommended_items"><!--recommended_items-->
+            <h2 class="title text-center">Top5 items</h2>
+            <div id="top-item-carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div ng-repeat="totalTop5 in totalProducts | limitTo: 5">
+                            <div class="col-sm-4 topproduct">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img ng-src="{{totalTop5.productImg}}"  alt="" />
+                                            <h2>${{totalTop5.price}}</h2>
+                                            <p>{{totalTop5.productName}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/recommended_items-->
 
         <div class="recommended_items"><!--recommended_items-->
-                    <h2 class="title text-center">recommended items</h2>
+                    <h2 class="title text-center">History Visited Items</h2>
 
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">
-                                <div ng-repeat="totalTop5 in totalProducts | orderBy: orderByFunction | limitTo: 5">
-                                    <div class="col-sm-4 topproduct">
+                                <div ng-repeat="history in productVisited| limitTo: 3">
+                                    <div class="col-sm-4 ">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
                                                 <div class="productinfo text-center">
-                                                    <img ng-src="{{totalTop5.productImg}}"  alt="" />
-                                                    <h2>${{totalTop5.price}}</h2>
-                                                    <p>{{totalTop5.productName}}</p>
+                                                    <img ng-src="{{history.productImg}}"  alt="" />
+                                                    <h2>${{history.price}}</h2>
+                                                    <p>{{history.productName}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -230,14 +256,14 @@
                                 </div>
                             </div>
                             <div class="item">
-                                <div ng-repeat="totalTop5 in totalProducts | orderBy: orderByFunction | limitTo: 5">
+                                <div ng-repeat="history in productVisited | limitTo: 3">
                                     <div class="col-sm-4 topproduct">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
                                                 <div class="productinfo text-center">
-                                                    <img ng-src="{{totalTop5.productImg}}"  alt="" />
-                                                    <h2>${{totalTop5.price}}</h2>
-                                                    <p>{{totalTop5.productName}}</p>
+                                                    <img ng-src="{{history.productImg}}"  alt="" />
+                                                    <h2>${{history.price}}</h2>
+                                                    <p>{{history.productName}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -254,6 +280,7 @@
                         </a>
                     </div>
                 </div><!--/recommended_items-->
+
 
     </div>
     <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">

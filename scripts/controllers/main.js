@@ -8,7 +8,7 @@
  * Controller of the sampleApp
  */
 angular.module('sampleApp')
-  .controller('MainCtrl', function ($scope, $http, $location, gamearts, currProduct, codejob, ourpets, iph) {
+  .controller('MainCtrl', function ($scope, $http, $location, currProduct, visited, gamearts, codejob, ourpets, iph) {
       $scope.category=1;
       $scope.products = gamearts.get_gamearts_products().query();
       $scope.Top5Games = gamearts.get_gamearts_top5_products().query();
@@ -78,6 +78,10 @@ angular.module('sampleApp')
 
       $scope.showProductDetail = function (productId) {
           currProduct.currProduct = $scope.products[productId - 1];
+          $scope.product = currProduct.currProduct;
+          console.log($scope.product);
+          visited.addVisited($scope.product);
+
           if ($scope.category === 1)
           {
               gamearts.update_gamearts_product_clickcount(productId).query();
@@ -95,9 +99,12 @@ angular.module('sampleApp')
               iph.update_iph_product_clickcount(productId).query();
           }
           //alert(currProduct.currProduct.productName);
+
           $location.path("/product/"+ $scope.category);
       };
 
+      $scope.productVisited = visited.getVisited();
+      console.log($scope.productVisited);
 
       $scope.totalProducts = [];
 
@@ -130,6 +137,7 @@ angular.module('sampleApp')
       $scope.orderByFunction = function(top5){
           return parseInt(-top5.clickcount);
       };
+
   }) // end of MainCtrl
 
 
@@ -227,19 +235,21 @@ angular.module('sampleApp')
       $scope.productCart = cart.getCart();
   })
 
-  .controller('LoginCtrl', function ($scope, md5, userAuth) {
+  .controller('LoginCtrl', function ($scope, currUser, $location, md5, userAuth) {
+
       $scope.checkbox = true;
 
       $scope.login = function () {
           if ($scope.presentusername === undefined)
           {
-              alert('Username can not be null');
+              $scope.information = 'Username can not be null';
               return;
           }
 
           if ($scope.presentpassword === undefined)
           {
-              alert('Password can not be null');
+
+              $scope.information = 'Password can not be null';
               return;
           }
           $scope.encryptionMsg = md5.createHash($scope.presentpassword);
@@ -248,10 +258,13 @@ angular.module('sampleApp')
               var ls = loginSuccess[0];
               //console.log(ls);
               if (ls.result === 1) {
-                  return alert('Login success');
+                  currUser.currUser = $scope.presentusername;
+                  console.log("lgs"+currUser.currUser);
+                  $location.path("/");
+                  return;
               }
               else {
-                  return alert('Login fail');
+                  $scope.information ='Login fail';
               }
           });
 
@@ -262,25 +275,24 @@ angular.module('sampleApp')
       $scope.registerNewUser = function () {
           if ($scope.newusername === undefined)
           {
-              alert('Username can not be null');
+              $scope.registerinfomation = 'Username can not be null';
               return;
           }
 
           if ($scope.newpassword === undefined)
           {
-              alert('Password can not be null');
+              $scope.registerinfomation = 'Password can not be null';
               return;
           }
           $scope.encryptionMsg = md5.createHash($scope.newpassword);
 
           var registerSuccess = userAuth.registerNewUser($scope.newusername, $scope.encryptionMsg).query(function() {
               var rs = registerSuccess[0];
-              //console.log(rs);
               if (rs.result === 1) {
-                  return alert('Register success');
+                  $scope.registerinfomation = 'Register success';
               }
               else {
-                  return alert('Register fail');
+                  $scope.registerinfomation = 'Register fail, you may use the same username';
               }
           });
           console.log('encryption password is ' + $scope.encryptionMsg);
@@ -302,4 +314,4 @@ angular.module('sampleApp')
         });
     };
     console.log($scope.fbLogin);
-})
+});

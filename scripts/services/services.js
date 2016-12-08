@@ -96,14 +96,31 @@ angular.module('marketplace_services', [])
         return currProduct;
     })
 
+    .factory('currUser', function() {
+        var currUser = {};
+        return currUser;
+    })
+
     .factory('cart', function () {
-        var cart = [];
+    var cart = [];
+    return {
+        addToCart:function(product) {
+            cart.push(product);
+        },
+        getCart: function() {
+            return cart;
+            }
+        };
+    })
+
+    .factory('visited', function () {
+        var visited= [];
         return {
-            addToCart:function(product) {
-                cart.push(product);
+            addVisited:function(product) {
+                visited.unshift(product);
             },
-            getCart: function() {
-                return cart;
+            getVisited: function() {
+                 return visited;
             }
         };
     })
