@@ -9,6 +9,8 @@
  * Main module of the application.
  */
 
+/*
+
 window.fbAsyncInit = function() {
     FB.init({
         appId      : '732081800281253',
@@ -24,7 +26,7 @@ window.fbAsyncInit = function() {
     js = d.createElement(s); js.id = id;
     js.src = "//connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+}(document, 'script', 'facebook-jssdk'));*/
 
 angular
   .module('sampleApp', [
@@ -38,7 +40,8 @@ angular
     'ngTouch',
     'marketplace_services',
     'directives',
-    'angular-md5'
+    'angular-md5',
+      'ezfb'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -84,8 +87,22 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
 
 
-  });
+    .config(function (ezfbProvider) {
+        /**
+         * Basic setup
+         *
+         * https://github.com/pc035860/angular-easyfb#configuration
+         */
+        ezfbProvider.setInitParams({
+            appId: '369235336756425'
+        });
+    });
+
+
+
+
 
 
