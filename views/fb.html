@@ -16,10 +16,10 @@
                                 <h2>You are login with Facebook.</h2>
                                 <h2>Welcome, {{fbName}}</h2>
                                 <button class="btn btn-primary" ng-click="login()" ng-disabled="loginStatus.status == 'connected'">Connect with Facebook</button>
-
+                                &nbsp;
                                 <button class="btn btn-danger" ng-click="logout()" ng-disabled="!loginStatus || loginStatus.status != 'connected'">Logout</button>
-
-                                <!--<button class="btn btn-success" ng-click="share()">FB.ui</button>-->
+                                &nbsp;
+                                <button class="btn btn-success" ng-click="share()">FB.ui</button>
 
 
                             </div>
