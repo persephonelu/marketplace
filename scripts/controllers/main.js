@@ -80,7 +80,9 @@ angular.module('sampleApp')
           currProduct.currProduct = $scope.products[productId - 1];
           $scope.product = currProduct.currProduct;
           console.log($scope.product);
-          visited.addVisited($scope.product);
+          $scope.visited = function () {
+              visited.addVisited($scope.product);
+          }
 
           if ($scope.category === 1)
           {
@@ -104,7 +106,7 @@ angular.module('sampleApp')
       };
 
       $scope.productVisited = visited.getVisited();
-      console.log($scope.productVisited);
+      console.log($scope.productV)
 
       $scope.totalProducts = [];
 
@@ -178,6 +180,15 @@ angular.module('sampleApp')
 
 
   })
+
+  .controller('StarCtrl', ['$scope', function ($scope) {
+    $scope.maxRating = 5;
+    $scope.ratedBy = 0;
+    $scope.rateBy = function (star) {
+        $scope.ratedBy = star;
+      }
+    }
+  ])
 
   .controller('CartCtrl', function ($scope, cart) {
       $scope.productCart = cart.getCart();

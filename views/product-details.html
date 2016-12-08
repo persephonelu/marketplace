@@ -1,3 +1,7 @@
+<link href="styles/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+
+
 <div class="col-sm-9 padding-right">
 	<div class="product-details"><!--product-details-->
 		<div class="col-sm-5">
@@ -12,12 +16,19 @@
 				<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 				<h2>{{product.productName}}</h2>
 				<p>Product ID: {{product.id}}</p>
-				<p ng-init="getProductRating()">Rating: {{rating}}</p>
-				<img src="images/product-details/rating.png" alt="" />
+        <div ng-init="getProductRating()">
+          <span>Rating: {{rating}}</span>
+          <input-stars style="display: inline-flex" max="5" ng-model="rating" readonly="readonly" ></input-stars>
+        </div>
+
+
+
 				<span>
 					<span>US ${{product.price}}</span>
 					<label>Quantity:</label>
-					<input type="text" ng-model="quantity" value="{{quantity}}" />
+					<input type="text" ng-model="quantity" value="{{quantity}}"/>
+
+
 					<button type="button" class="btn btn-fefault cart" ng-click="addProductToCart()">
 						<i class="fa fa-shopping-cart"></i>
 						Add to cart
@@ -63,7 +74,15 @@
 							<input type="email" placeholder="Email Address"/>
 						</span>
 						<textarea name="" ></textarea>
-						<b>Rating:</b> <img src="images/product-details/rating.png" alt="" />
+						<b>Rating:</b>
+            <div ng-controller="StarCtrl">
+              <ul class="rating">
+                <li ng-repeat="n in [].constructor(maxRating) track by $index">
+                  <span ng-click="rateBy($index+1)" ng-show="ratedBy > $index" class="filled">&#9733;</span>
+                  <span ng-click="rateBy($index+1)" ng-show="ratedBy <= $index">&#9733;</span>
+                </li>
+              </ul>
+            </div>
 						<button type="button" class="btn btn-default pull-right">
 							Submit
 						</button>
@@ -73,3 +92,4 @@
 		</div>
 	</div>
 </div>
+

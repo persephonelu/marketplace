@@ -38,7 +38,8 @@ angular
     'ngTouch',
     'marketplace_services',
     'directives',
-    'angular-md5'
+    'angular-md5',
+    'angular-input-stars'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
