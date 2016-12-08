@@ -143,7 +143,7 @@ angular.module('sampleApp')
   }) // end of MainCtrl
 
 
-  .controller('ProductCtrl', function ($scope, $sce, currProduct, cart, $routeParams, productReviewRating) {
+  .controller('ProductCtrl', function ($http, $scope, $sce, currProduct, cart, $routeParams, productReviewRating) {
       $scope.product = currProduct.currProduct;
       $scope.quantity = 1;
       $scope.category = $routeParams.category;
@@ -169,13 +169,65 @@ angular.module('sampleApp')
 
       $scope.getProductReview = function () {
           $scope.productReviews = productReviewRating.getProductReview($scope.category, $scope.product.id).query();//(function() { //$scope.encryptionMsg
-              //var prw = productReview;
-              //console.log("get-return-rating"+pr.avg_rating);
-              //console.log(prw.username);
-              //$scope.rating = pr.avg_rating;
-              //$scope.username = prw.username;
-              //$scope.comments = prw.comments;
-          //});
+          //var prw = productReview;
+          //console.log("get-return-rating"+pr.avg_rating);
+          //console.log(prw.username);
+          //$scope.rating = pr.avg_rating;
+          //$scope.username = prw.username;
+          //$scope.comments = prw.comments;
+      };
+
+      $scope.updateProductRating = function () {
+          $scope.productReviews = productReviewRating.updateProductRating($scope.category, $scope.product.id, $scope.addReviewRating).query();//(function() { //$scope.encryptionMsg
+          //var prw = productReview;
+          //console.log("get-return-rating"+pr.avg_rating);
+          //console.log(prw.username);
+          //$scope.rating = pr.avg_rating;
+          //$scope.username = prw.username;
+          //$scope.comments = prw.comments;
+      };
+
+      //$scope.postProductReview = function () {
+          //$scope.addReview = {};
+          // productReviewRating.postProductReview($scope.addReviewUsername, $scope.category, $scope.product.id,
+              //$scope.addReviewEmail, $scope.addReviewComments, $scope.addReviewRating).query();//(function() { //$scope.encryptionMsg
+          //productReviewRating.postProductReview($scope.category, $scope.product.id, $scope.addReviewUsername, $scope.addReviewEmail, $scope.addReviewComments, $scope.addReviewRating).query();
+          //var prw = productReview;
+          //console.log("get-return-rating"+pr.avg_rating);
+          //console.log(prw.username);
+          //$scope.rating = pr.avg_rating;
+          //$scope.username = prw.username;
+          //$scope.comments = prw.comments;
+      //};
+
+
+      $scope.submitForm = function() {
+          var data = new Object();
+          data.username = $scope.addReviewUsername;
+          data.email = $scope.addReviewEmail;
+          data.category = $scope.category;
+          data.product_id = $scope.product.id;
+          data.comments = $scope.addReviewComments;
+          data.rating = $scope.addReviewRating;
+          var jdata = JSON.stringify(data);
+          //console.log(jdata);
+          // Posting data
+          $http({
+              method  : 'POST',
+              url     : 'http://www.codejob.tech/postProductReview.php?',
+              data    : jdata, //forms user object
+              headers : {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+          })
+              .success(function(data) {
+                  if (data.errors) {
+                      // Showing errors.
+                      $scope.errorName = data.errors.name;
+                      $scope.errorUserName = data.errors.username;
+                      $scope.errorEmail = data.errors.email;
+                  } else {
+                      $scope.message = data.message;
+                  }
+              });
       };
 
 
@@ -258,6 +310,7 @@ angular.module('sampleApp')
       };
   })
 
+  /*
   .controller('fbLoginCtrl',function($scope) {
     $scope.fbLogin = function() {
         FB.login(function(response) {
@@ -272,5 +325,87 @@ angular.module('sampleApp')
             }
         });
     };
+<<<<<<< HEAD
     console.log($scope.fbLogin);
 });
+=======
+    console.log($scope.fbLogin);*/
+
+    .controller('fbLoginCtrl', function($scope, ezfb, $window, $location) {
+
+        updateLoginStatus(updateApiMe);
+
+        $scope.login = function () {
+            /**
+             * Calling FB.login with required permissions specified
+             * https://developers.facebook.com/docs/reference/javascript/FB.login/v2.0
+             */
+            ezfb.login(function (res) {
+                /**
+                 * no manual $scope.$apply, I got that handled
+                 */
+                if (res.authResponse) {
+                    updateLoginStatus(updateApiMe);
+                }
+            }, {scope: 'email,user_likes'});
+        };
+
+        $scope.logout = function () {
+            /**
+             * Calling FB.logout
+             * https://developers.facebook.com/docs/reference/javascript/FB.logout
+             */
+            ezfb.logout(function () {
+                updateLoginStatus(updateApiMe);
+            });
+        };
+
+        $scope.share = function () {
+            ezfb.ui(
+                {
+                    method: 'feed',
+                    name: 'angular-easyfb API demo',
+                    picture: 'http://plnkr.co/img/plunker.png',
+                    link: 'http://plnkr.co/edit/qclqht?p=preview',
+                    description: 'angular-easyfb is an AngularJS module wrapping Facebook SDK.' +
+                    ' Facebook integration in AngularJS made easy!' +
+                    ' Please try it and feel free to give feedbacks.'
+                },
+                function (res) {
+                    // res: FB.ui response
+                }
+            );
+        };
+
+        /**
+         * For generating better looking JSON results
+         */
+        var autoToJSON = ['loginStatus', 'apiMe'];
+
+        angular.forEach(autoToJSON, function (varName) {
+            $scope.$watch(varName, function (val) {
+                $scope[varName + 'JSON'] = JSON.stringify(val, null, 2);
+            }, true);
+        });
+
+        /**
+         * Update loginStatus result
+         */
+        function updateLoginStatus (more) {
+            ezfb.getLoginStatus(function (res) {
+                $scope.loginStatus = res;
+
+                (more || angular.noop)();
+            });
+        };
+
+        /**
+         * Update api('/me') result
+         */
+        function updateApiMe () {
+            ezfb.api('/me', function (res) {
+                $scope.apiMe = res;
+                $scope.fbName = $scope.apiMe["name"];
+            });
+        };
+    });
