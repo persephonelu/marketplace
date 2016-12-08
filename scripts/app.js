@@ -41,7 +41,8 @@ angular
     'marketplace_services',
     'directives',
     'angular-md5',
-      'ezfb'
+      'ezfb',
+      'angular-input-stars'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider

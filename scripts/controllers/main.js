@@ -393,4 +393,14 @@ angular.module('sampleApp')
                 $scope.fbName = $scope.apiMe["name"];
             });
         };
-    });
+    })
+
+
+    .controller('StarCtrl', ['$scope', function ($scope) { //Star
+        $scope.maxRating = 5;
+        $scope.ratedBy = 0;
+        $scope.rateBy = function (star) {
+            $scope.ratedBy = star;
+        }
+    }
+    ]);

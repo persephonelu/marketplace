@@ -1,3 +1,5 @@
+
+
 <div class="col-sm-9 padding-right">
 	<div class="product-details"><!--product-details-->
 		<div class="col-sm-5">
@@ -13,7 +15,8 @@
 				<h2>{{product.productName}}</h2>
 				<p>Product ID: {{product.id}}</p>
 				<p ng-init="getProductRating()">Rating: {{rating}}</p>
-				<img src="images/product-details/rating.png" alt="" />
+				<input-stars style="display: inline-flex" max="5" ng-model="rating" readonly="readonly" ></input-stars>
+				<!--<img src="images/product-details/rating.png" alt="" />-->
 				<span>
 					<span>US ${{product.price}}</span>
 					<label>Quantity:</label>
@@ -62,9 +65,16 @@
 						<input type="text" placeholder="Your Name" ng-model="addReviewUsername"/><input type="email" placeholder="Email Address" ng-model="addReviewEmail"/>
 						</span>
 						<textarea name="" ng-model="addReviewComments"></textarea>
-						<b ng-model="addReviewRating" ng-init="addReviewRating=1">Rating:</b> <img src="images/product-details/rating.png" alt="" />
+						<b ng-model="addReviewRating" ng-init="addReviewRating=1">Rating:</b>
+						<div ng-controller="StarCtrl">
+							<ul class="rating">
+								<li ng-repeat="n in [].constructor(maxRating) track by $index">
+									<span ng-click="rateBy($index+1)" ng-show="ratedBy > $index" class="filled">&#9733;</span>
+									<span ng-click="rateBy($index+1)" ng-show="ratedBy <= $index">&#9733;</span>
+								</li>
+							</ul>
+						</div>
 						<button type="button" class="btn btn-default pull-right" ng-click="submitForm(); updateProductRating()" >
-
 							Submit
 						</button>
 					</form>
