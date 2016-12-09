@@ -12,7 +12,9 @@ angular.module('sampleApp')
       $scope.category=1;
       $scope.products = gamearts.get_gamearts_products().query();
       $scope.Top5Games = gamearts.get_gamearts_top5_products().query();
-
+      $scope.Top5Pets= ourpets.get_ourpets_top5_products().query();
+      $scope.Top5Jobs= codejob.get_codejob_top5_products().query();
+      $scope.Top5Iph= iph.get_iph_top5_products().query();
 
       $scope.get_gamearts_products = function() {
           $scope.category = 1;
@@ -29,7 +31,7 @@ angular.module('sampleApp')
       //start pets
 
 
-      $scope.Top5Pets= ourpets.get_ourpets_top5_products().query();
+
       $scope.get_ourpets_products = function() {
           $scope.category = 2;
           //console.log($scope.category);
@@ -45,7 +47,7 @@ angular.module('sampleApp')
 
 
       //add codejob
-      $scope.Top5Jobs= codejob.get_codejob_top5_products().query();
+
       $scope.get_codejob_products = function() {
           $scope.category = 3;
           //console.log($scope.category);
@@ -62,7 +64,7 @@ angular.module('sampleApp')
 
 
       //start iph
-      $scope.Top5Iph= iph.get_iph_top5_products().query();
+
       $scope.get_iph_products = function() {
           $scope.category = 4;
           $scope.products =iph.get_iph_products().query();
@@ -145,7 +147,7 @@ angular.module('sampleApp')
   }) // end of MainCtrl
 
 
-  .controller('ProductCtrl', function ($http, $scope, $sce, currProduct, cart, $routeParams, productReviewRating) {
+  .controller('ProductCtrl', function ($http, $scope, $sce, currProduct, cart, $routeParams, productReviewRating, currRating) {
       $scope.product = currProduct.currProduct;
       $scope.quantity = 1;
       $scope.category = $routeParams.category;
@@ -180,7 +182,7 @@ angular.module('sampleApp')
       };
 
       $scope.updateProductRating = function () {
-          $scope.productReviews = productReviewRating.updateProductRating($scope.category, $scope.product.id, $scope.addReviewRating).query();//(function() { //$scope.encryptionMsg
+          $scope.productReviews = productReviewRating.updateProductRating($scope.category, $scope.product.id, currRating.getCurrRating()).query();//(function() { //$scope.encryptionMsg
           //var prw = productReview;
           //console.log("get-return-rating"+pr.avg_rating);
           //console.log(prw.username);
@@ -210,9 +212,10 @@ angular.module('sampleApp')
           data.category = $scope.category;
           data.product_id = $scope.product.id;
           data.comments = $scope.addReviewComments;
-          data.rating = $scope.addReviewRating;
+          // data.rating = $scope.addReviewRating;
+          data.rating = currRating.getCurrRating();
           var jdata = JSON.stringify(data);
-          //console.log(jdata);
+          console.log(jdata);
           // Posting data
           $http({
               method  : 'POST',
@@ -235,14 +238,6 @@ angular.module('sampleApp')
 
   })
 
-  .controller('StarCtrl', ['$scope', function ($scope) {
-    $scope.maxRating = 5;
-    $scope.ratedBy = 0;
-    $scope.rateBy = function (star) {
-        $scope.ratedBy = star;
-      }
-    }
-  ])
 
   .controller('CartCtrl', function ($scope, cart) {
       $scope.productCart = cart.getCart();
@@ -411,10 +406,22 @@ angular.module('sampleApp')
     })
 
 
-    .controller('StarCtrl', function ($scope) { //Star
+    .controller('StarCtrl', function ($scope, currRating) { //Star
         $scope.maxRating = 5;
-        $scope.ratedBy = 0;
+        $scope.ratedBy = 1;
         $scope.rateBy = function (star) {
             $scope.ratedBy = star;
+            // currRating.currRating = $scope.ratedBy;
+            currRating.setCurrRating($scope.ratedBy);
+            // console.log
+            // $scope.addReviewRating = currRating.currRating;
         };
+
+        // $scope.addReviewRating = 1;
+        // $scope.rateBy = function (star) {
+        //     $scope.addReviewRating = star;
+        //     // $scope.addReviewRating = $scope.ratedBy;
+        // };
+
+
     })
