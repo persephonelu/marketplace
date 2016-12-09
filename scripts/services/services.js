@@ -101,20 +101,6 @@ angular.module('marketplace_services', [])
         return currUser;
     })
 
-
-    .factory('currRating', function() {
-        var currRating = {};
-        return {
-            setCurrRating:function(rating) {
-                currRating = rating;
-            },
-            getCurrRating:function() {
-                return currRating;
-            }
-        };
-    })
-
-
     .factory('cart', function () {
     var cart = [];
     return {

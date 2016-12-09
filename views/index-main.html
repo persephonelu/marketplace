@@ -95,26 +95,26 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="left-sidebar">
-                    <h2>SHOPS</h2>
+                    <h2>Shops</h2>
                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 class="panel-title"><a href="" ng-model="category" ng-click="get_gamearts_products()">GameArts</a></h4>
+                                <h4 class="panel-title"><a href="" ng-model="category" ng-click="get_gamearts_products()">Games</a></h4>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 class="panel-title"><a href="" ng-model="category" ng-click="get_ourpets_products()">OurPets</a></h4>
+                                <h4 class="panel-title"><a href="" ng-model="category" ng-click="get_ourpets_products()">Pets</a></h4>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 class="panel-title"><a href="" ng-model="category" ng-click="get_codejob_products()">CodeJob</a></h4>
+                                <h4 class="panel-title"><a href="" ng-model="category" ng-click="get_codejob_products()">Jobs</a></h4>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 class="panel-title"><a href="" ng-model="category" ng-click="get_iph_products()">Music</a></h4>
+                                <h4 class="panel-title"><a href="" ng-model="category" ng-click="get_iph_products()">Musics</a></h4>
                             </div>
                         </div>
                     </div><!--/category-products-->
@@ -128,7 +128,7 @@
 
             <div class="col-sm-9 padding-right">
                 <div class="features_items"><!--features_items-->
-                    <h2 class="title text-center">FEATURE ITEMS</h2>
+                    <h2 class="title text-center">Features Items</h2>
                     <div ng-repeat="product in products" >
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
@@ -138,7 +138,10 @@
                                         <h2>${{product.price}}</h2>
                                         <p>{{product.productName}}</p>
                                         <!--<a href="#" class="btn btn-default add-to-cart" ng-click="addProductToCart()" ><i class="fa fa-shopping-cart" ></i>Add to cart</a>-->
-
+                                        <!--<button type="button" class="btn btn-fefault add-to-cart"  ng-click="addProductToCart()">-->
+                                            <!--<i class="fa fa-shopping-cart"></i>-->
+                                            <!--Add to cart-->
+                                        <!--</button>-->
                                     </div>
                                 </div>
                             </div>
@@ -149,13 +152,12 @@
         </div>
 
         <div class="category-tab"><!--category-tab-->
-            <h2 class="title text-center">TOP5 IN EACH SHOP</h2>
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a show-tab href="#game" data-toggle="tab" >GameArts</a></li>
-                            <li><a show-tab href="#pets" data-toggle="tab" >OurPets</a></li>
-                            <li><a show-tab href="#jobs" data-toggle="tab" >CodeJob</a></li>
-                            <li><a show-tab href="#music" data-toggle="tab" >Music</a></li>
+                            <li class="active"><a show-tab href="#game" data-toggle="tab" ng-click="get_gamearts_products()">Games</a></li>
+                            <li><a show-tab href="#pets" data-toggle="tab" ng-click="get_ourpets_products()">Pets</a></li>
+                            <li><a show-tab href="#jobs" data-toggle="tab" ng-click="get_codejob_products()">Jobs</a></li>
+                            <li><a show-tab href="#music" data-toggle="tab" ng-click="get_iph_products()">Musics</a></li>
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -225,7 +227,7 @@
                     </div>
                 </div><!--/category-tab-->
         <div class="recommended_items"><!--recommended_items-->
-            <h2 class="title text-center">TOP5 IN ENTIRE MARKETPLACE</h2>
+            <h2 class="title text-center">Top5 items</h2>
             <div id="top-item-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="item active">
@@ -248,7 +250,7 @@
         </div><!--/recommended_items-->
 
         <div class="recommended_items"><!--recommended_items-->
-                    <h2 class="title text-center">HISTORY OF VISITED ITEMS</h2>
+                    <h2 class="title text-center">History Visited Items</h2>
 
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
