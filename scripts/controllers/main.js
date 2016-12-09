@@ -397,7 +397,7 @@ angular.module('sampleApp')
 
                 (more || angular.noop)();
             });
-        };
+        }
 
         /**
          * Update api('/me') result
@@ -407,15 +407,14 @@ angular.module('sampleApp')
                 $scope.apiMe = res;
                 $scope.fbName = $scope.apiMe["name"];
             });
-        };
+        }
     })
 
 
-    .controller('StarCtrl', ['$scope', function ($scope) { //Star
+    .controller('StarCtrl', function ($scope) { //Star
         $scope.maxRating = 5;
         $scope.ratedBy = 0;
         $scope.rateBy = function (star) {
             $scope.ratedBy = star;
-        }
-    }
-    ]);
+        };
+    })
