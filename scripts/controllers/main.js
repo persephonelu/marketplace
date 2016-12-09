@@ -182,7 +182,7 @@ angular.module('sampleApp')
       };
 
       $scope.updateProductRating = function () {
-          $scope.productReviews = productReviewRating.updateProductRating($scope.category, $scope.product.id, $scope.addReviewRating).query();//(function() { //$scope.encryptionMsg
+          $scope.productReviews = productReviewRating.updateProductRating($scope.category, $scope.product.id, currRating.getCurrRating()).query();//(function() { //$scope.encryptionMsg
           //var prw = productReview;
           //console.log("get-return-rating"+pr.avg_rating);
           //console.log(prw.username);
