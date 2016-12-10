@@ -268,7 +268,7 @@ angular.module('sampleApp')
               if (ls.result === 1) {
                   currUser.currUser = $scope.presentusername;
                   showindexusername.setIndexUsername($scope.presentusername);
-                  console.log("lgs"+showindexusername.getIndexUsername());
+                  console.log("lgs"+showindexusername.getIndexUsername().n);
                   $location.path("/");
                   return;
               }
@@ -309,7 +309,7 @@ angular.module('sampleApp')
   })
 
 
-    .controller('fbLoginCtrl', function($scope, ezfb, $window, $location) {
+    .controller('fbLoginCtrl', function($scope, ezfb, $window, $location, showindexusername) {
 
         updateLoginStatus(updateApiMe);
 
@@ -324,6 +324,7 @@ angular.module('sampleApp')
                  */
                 if (res.authResponse) {
                     updateLoginStatus(updateApiMe);
+                    showindexusername.setIndexUsername(res["name"]);
                 }
             }, {scope: 'email,user_likes'});
         };

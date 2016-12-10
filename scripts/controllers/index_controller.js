@@ -12,5 +12,5 @@ angular.module('sampleApp')
         $scope.email='fang.lu@sjsu.edu';
         $scope.phone='+1(530)601-8719';
         $scope.indexusername = showindexusername.getIndexUsername();
-        console.log("index:"+showindexusername.getIndexUsername());
+        console.log($scope.indexusername.n);
     });

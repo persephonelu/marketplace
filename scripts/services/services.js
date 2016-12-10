@@ -145,7 +145,7 @@ angular.module('marketplace_services', [])
         var indexusername = {};
         return {
             setIndexUsername:function(name) {
-                indexusername = name;
+                indexusername.n = name;
             },
             getIndexUsername:function() {
                 return indexusername;
