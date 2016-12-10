@@ -140,6 +140,21 @@ angular.module('marketplace_services', [])
     })
 
 
+
+    .factory('showindexusername', function () {
+        var indexusername = {};
+        return {
+            setIndexUsername:function(name) {
+                indexusername = name;
+            },
+            getIndexUsername:function() {
+                return indexusername;
+            }
+        };
+    })
+
+
+
     .factory('userAuth', function($resource) {
         return {
             registerNewUser: function (newusername, newpassword) { //user sign-up

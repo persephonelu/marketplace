@@ -243,7 +243,7 @@ angular.module('sampleApp')
       $scope.productCart = cart.getCart();
   })
 
-  .controller('LoginCtrl', function ($scope, currUser, $location, md5, userAuth) {
+  .controller('LoginCtrl', function ($scope, currUser, $location, md5, userAuth, showindexusername) {
 
       $scope.checkbox = true;
 
@@ -267,7 +267,8 @@ angular.module('sampleApp')
               //console.log(ls);
               if (ls.result === 1) {
                   currUser.currUser = $scope.presentusername;
-                  console.log("lgs"+currUser.currUser);
+                  showindexusername.setIndexUsername($scope.presentusername);
+                  console.log("lgs"+showindexusername.getIndexUsername());
                   $location.path("/");
                   return;
               }
@@ -307,24 +308,6 @@ angular.module('sampleApp')
       };
   })
 
-  /*
-  .controller('fbLoginCtrl',function($scope) {
-    $scope.fbLogin = function() {
-        FB.login(function(response) {
-            if (response.authResponse) {
-                console.log('Welcome!  Fetching your information.... ');
-                FB.api('/me', function(response) {
-                    console.log('Good to see you, ' + response.name + '.');
-                    $scope.loginname = response.name;
-                });
-            } else {
-                console.log('User cancelled login or did not fully authorize.');
-            }
-        });
-    };
-    console.log($scope.fbLogin);
-});
-    console.log($scope.fbLogin);*/
 
     .controller('fbLoginCtrl', function($scope, ezfb, $window, $location) {
 
