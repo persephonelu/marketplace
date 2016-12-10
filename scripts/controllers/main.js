@@ -77,17 +77,53 @@ angular.module('sampleApp')
       };
       //end iph
 
+      $scope.setCategoryto1 = function() {
+          $scope.category = 1;
+      };
+
+      $scope.setCategoryto2 = function() {
+          $scope.category = 2;
+      };
+
+      $scope.setCategoryto3 = function() {
+          $scope.category = 3;
+      };
+
+      $scope.setCategoryto4 = function() {
+          $scope.category = 4;
+      };
+
 
       $scope.showProductDetail = function (productId) {
+          // if ($scope.category === 1)
+          // {
+          //     currProduct.currProduct = gamearts.get_gamearts_products_by_ID(productId).query();
+          // }
+          // else if ($scope.category === 2)
+          // {
+          //     currProduct.currProduct = ourpets.get_ourpets_products_by_ID(productId).query();
+          // }
+          // else if ($scope.category === 3)
+          // {
+          //     currProduct.currProduct = codejob.get_codejob_products_by_ID(productId).query();
+          // }
+          // else if ($scope.category === 4)
+          // {
+          //     currProduct.currProduct = iph.get_iph_products_by_ID(productId-1).query();
+          // }
+
+
           currProduct.currProduct = $scope.products[productId - 1];
           $scope.product = currProduct.currProduct;
           console.log($scope.product);
-          visited.addVisited($scope.product);
+
+          visited.addVisited($scope.product); //update recently visited
 
           // $scope.visited = function () {
           //     visited.addVisited($scope.product);
           // }
 
+          // update click count
           if ($scope.category === 1)
           {
               gamearts.update_gamearts_product_clickcount(productId).query();
