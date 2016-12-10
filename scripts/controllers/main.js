@@ -179,7 +179,6 @@ angular.module('sampleApp')
       $scope.orderByFunction = function(top5){
           return parseInt(-top5.clickcount);
       };
-
   }) // end of MainCtrl
 
 

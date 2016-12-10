@@ -229,7 +229,7 @@
             <div id="top-item-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="item active">
-                        <div ng-repeat="totalTop5 in totalProducts | limitTo: 5">
+                        <div ng-repeat="totalTop5 in totalProducts | orderBy: orderByFunction | limitTo: 5">
                             <div class="col-sm-4 topproduct">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
